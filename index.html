@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malak Belmohitou - Web Developer & Programmer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        nav ul li a {
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #00ffff;
+            transform: translateY(-2px);
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        /* Dynamic Decorative Elements */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+        .shape:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 120px; height: 120px; top: 60%; right: 10%; animation-delay: 5s; }
+        .shape:nth-child(3) { width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 10s; }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            animation: glow 5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 0 1rem;
+            z-index: 1;
+        }
+        .hero-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #0a0a0a;
+            transition: transform 0.3s ease;
+        }
+        .hero-photo:hover {
+            transform: scale(1.05);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* General Section Styles */
+        section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* About Section */
+        #about {
+            background: rgba(26, 26, 46, 0.5);
+        }
+        #about p {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .skill-card {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .skill-card:hover::before {
+            left: 100%;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+        }
+        .skill-card h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+        .skill-card ul {
+            list-style: none;
+        }
+        .skill-card li {
+            padding: 0.5rem 0;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .skill-card:hover li {
+            opacity: 1;
+        }
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project-card {
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+        }
+        .project-preview {
+            height: 200px;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #0a0a0a;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover .project-preview {
+            transform: scale(1.1);
+        }
+        .project-info {
+            padding: 1.5rem;
+        }
+        .project-info h3 {
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+        .project-info p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .project-links a {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .project-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+        /* Contact Section */
+        #contact {
+            background: rgba(26, 26, 46, 0.5);
+            text-align: center;
+        }
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .contact-link-item {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: left;
+        }
+        .contact-link-item:hover {
+            transform: translateY(-5px);
+            border-color: #00ffff;
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+        }
+        .contact-icon {
+            font-size: 2rem;
+            color: #00ffff;
+            min-width: 50px;
+            text-align: center;
+        }
+        .contact-link-text {
+            flex: 1;
+        }
+        .contact-link-item h3 {
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        .contact-link-item p {
+            color: #00ffff;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0a0a0a;
+            opacity: 0.8;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .contact-link-item {
+                padding: 1rem;
+            }
+            .contact-icon {
+                font-size: 1.5rem;
+                min-width: 40px;
+            }
+        }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Parallax Effect (Subtle) */
+        section {
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <img src="personnel.jpg" alt="Malak Belmohitou" class="hero-photo">
+                <!-- Placeholder for photo; replace with <img src="path/to/photo.jpg" alt="Malak Belmohitou"> -->
+            </img>
+            <h1>Hi, I'm Malak Belmohitou</h1>
+            <p>Web Developer & Programmer passionate about crafting clean, efficient, and user-friendly web experiences.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Malak is a creative and detail-oriented developer specialized in both front-end and back-end development. With a strong foundation in modern web technologies, Malak focuses on building scalable, performant applications that deliver exceptional user experiences. Passionate about innovation, Malak thrives on solving complex problems and staying ahead of the curve in the ever-evolving tech landscape.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Front-End</h3>
+                <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React.js</li>
+                    <li>Vue.js</li>
+                    <li>Bootstrap</li>
+                    <li>TailwindCSS</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Back-End</h3>
+                <ul>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>PHP</li>
+                    <li>Laravel</li>
+                    <li>Python (Django, Flask)</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Databases</h3>
+                <ul>
+                    <li>MySQL</li>
+                    <li>MongoDB</li>
+                    <li>PostgreSQL</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Others</h3>
+                <ul>
+                    <li>Git/GitHub</li>
+                    <li>RESTful APIs</li>
+                    <li>Debugging & Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1: Who Am I -->
+            <a href="https://dev-malak.github.io/Who-Am-I-" target="_blank" class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Who Am I Game</h3>
+                    <p>Discover your character in this fun quiz! Answer 5 questions to see if you’re a Leader, Thinker, Creator, or Supporter. Get a detailed result with strengths and “Areas for Growth,” all in a modern,…</p>
+                    <div class="project-links">
+                        <span>Live Demo</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 2: Character Discovery Game -->
+            <a href="https://dev-malak.github.io/Character-discovery-game/" target="_blank" class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Character Discovery Game</h3>
+                    <p>Step into a world of imagination and find out who you truly are! In Discover Your Character, you’ll answer a series of fun and creative questions that reveal which character from a fantasy world or…</p>
+                    <div class="project-links">
+                        <span>Live Demo</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 3: Login Page -->
+            <a href="https://dev-malak.github.io/login-page/" target="_blank" class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Modern Login Page</h3>
+                    <p>Beautiful and responsive login page with form validation, smooth animations, and user-friendly interface.</p>
+                    <div class="project-links">
+                        <span>Live Demo</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 4: Smart Task Manager -->
+            <a href="https://dev-malak.github.io/Smart-Task-Manager/" target="_blank" class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Smart Task Manager</h3>
+                    <p>Productivity application for managing tasks with features like prioritization, deadlines, and progress tracking.</p>
+                    <div class="project-links">
+                        <span>Live Demo</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 5: XO Game -->
+            <a href="https://dev-malak.github.io/XO/" target="_blank" class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="project-info">
+                    <h3>XO Game</h3>
+                    <p>Classic Tic-Tac-Toe game with modern design, score tracking, and responsive gameplay for all devices.</p>
+                    <div class="project-links">
+                        <span>Live Demo</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/malak-belmohitou-205063296" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                <div class="contact-link-text">
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally</p>
+                </div>
+            </a>
+            <a href="https://github.com/Dev-Malak" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-github"></i></div>
+                <div class="contact-link-text">
+                    <h3>GitHub</h3>
+                    <p>View my projects</p>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/malakb.dev" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                <div class="contact-link-text">
+                    <h3>Instagram</h3>
+                    <p>Follow my journey</p>
+                </div>
+            </a>
+            <a href="https://t.me/malakdev" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+                <div class="contact-link-text">
+                    <h3>Telegram Channel</h3>
+                    <p>Join my channel</p>
+                </div>
+            </a>
+            <a href="tel:+212779120661" class="contact-link-item">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-link-text">
+                    <h3>Phone</h3>
+                    <p>+212 779-120661</p>
+                </div>
+            </a>
+            <a href="https://www.tiktok.com/@dev.malak" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-tiktok"></i></div>
+                <div class="contact-link-text">
+                    <h3>TikTok</h3>
+                    <p>Watch my content</p>
+                </div>
+            </a>
+            <a href="mailto:belmohitoumalak8@gmail.com" class="contact-link-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-link-text">
+                    <h3>Gmail</h3>
+                    <p>belmohitoumalak8@gmail.com</p>
+                </div>
+            </a>
+            <a href="mailto:belmohitoumalak8@outlook.fr" class="contact-link-item">
+                <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <div class="contact-link-text">
+                    <h3>Outlook</h3>
+                    <p>belmohitoumalak8@outlook.fr</p>
+                </div>
+            </a>
+            <a href="https://wa.me/212779120661" target="_blank" class="contact-link-item">
+                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="contact-link-text">
+                    <h3>WhatsApp</h3>
+                    <p>Chat with me</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Malak Belmohitou. All rights reserved.</p>
+    </footer>
+</body>
+</html>        
